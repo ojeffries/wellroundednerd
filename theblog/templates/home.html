@@ -1,17 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>HomePage</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block content %}
+
+
 <h1>Hello World!</h1>
 <ul>
-{% for post in object_list %}
-    <li>{{post.title}} - {{post.author}}<br/>
-    {{post.body}}
+    {% for post in object_list %}
+    <li>
+        <a href="{% url 'article-detail' post.pk %}">
+            {{post.title}}</a>  - {{post.author.first_name}} {{post.author.last_name}}<br/>
+        {{post.body}}
     </li>
-{% endfor %}
-    </ul>
-</body>
-</html>
+    {% endfor %}
+</ul>
+{% endblock %}
